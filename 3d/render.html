@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>puff studio renderer</title>
+<!-- Renders product images into ../img/. Driven by a headless browser; not part of the public site. -->
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#888}canvas{display:block}</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script src="colors.js"></script>
+<script src="models.js"></script>
+<script>
+const canvas = document.getElementById("c");
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, preserveDrawingBuffer: true });
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.NoToneMapping;
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.setClearColor(0x000000, 0);
+const { scene, contact } = PuffModels.studio(renderer);
+const camera = new THREE.PerspectiveCamera(20, 1, .1, 100);
+let current = null;
+
+window.ready = document.fonts.load("300 100px Outfit");
+
+// Render one product to a PNG data URL
+window.renderOne = (type, key, opts = {}, w = 1600, h = 2000, elev = 8) => {
+  if (current) scene.remove(current);
+  current = PuffModels.build(type, key, opts);
+  if (opts.rotate) current.rotation.y = opts.rotate;
+  scene.add(current);
+  renderer.setSize(w, h, false);
+  const { size } = PuffModels.frame(camera, current, w / h, elev, opts.pad || 1.12);
+  const s = Math.max(size.x, size.z) * 1.5;
+  contact.scale.set(s, s, 1);
+  contact.visible = elev < 40 && !current.userData.group;
+  renderer.render(scene, camera);
+  return canvas.toDataURL("image/png");
+};
+</script>
+</body>
+</html>

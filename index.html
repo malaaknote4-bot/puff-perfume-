@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>puff — Hydration, in every shade</title>
+  <meta name="description" content="Insulated tumblers and bottles in a palette made for the way you move.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&family=Outfit:wght@200;300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="grain" x="0" y="0" width="100%" height="100%">
+    <feTurbulence type="fractalNoise" baseFrequency="1.4" numOctaves="2" stitchTiles="stitch" result="n"/>
+    <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .045 0"/>
+    <feComposite in2="SourceGraphic" operator="in"/>
+  </filter>
+</svg>
+
+<header class="nav" id="top">
+  <div class="wrap nav__inner">
+    <a href="#top" class="logo" aria-label="puff home">puff</a>
+    <nav class="nav__links" aria-label="Main">
+      <a href="#shop">Shop</a>
+      <a href="#colors">Colors</a>
+      <a href="#grippii">Accessories</a>
+      <a href="#stores">Stores</a>
+    </nav>
+    <button class="bag" aria-label="Shopping bag">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+      <span class="bag__count" id="bagCount">0</span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero__glow" aria-hidden="true"></div>
+    <div class="wrap hero__grid">
+      <div class="hero__copy reveal">
+        <p class="eyebrow">Insulated drinkware</p>
+        <h1>Hydration,<br><em>in every shade.</em></h1>
+        <p class="lede">Double-wall stainless steel tumblers and bottles in a palette made for the way you move: the morning commute, the studio, the last meeting of the day.</p>
+        <div class="hero__ctas">
+          <a href="#shop" class="btn btn--dark">Shop the collection</a>
+          <a href="#colors" class="btn btn--ghost">Find your shade</a>
+        </div>
+        <ul class="hero__facts">
+          <li><strong>20+</strong><span>shades</span></li>
+          <li><strong>8</strong><span>silhouettes</span></li>
+          <li><strong>Matte</strong><span>soft-touch finish</span></li>
+        </ul>
+      </div>
+      <div class="hero__stage reveal" id="heroStage" aria-label="The puff lineup"></div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee" aria-hidden="true"><div class="marquee__track" id="marquee"></div></div>
+
+  <!-- COLLECTION -->
+  <section class="section" id="shop">
+    <div class="wrap">
+      <div class="section__head reveal">
+        <p class="eyebrow">The collection</p>
+        <h2>Eight silhouettes. <em>Endless combinations.</em></h2>
+        <p class="section__sub">Pick a shape, then a shade. Tap a color to see it.</p>
+      </div>
+      <div class="tabs" role="tablist">
+        <button class="tab is-active" role="tab" aria-selected="true" data-group="main">Tumblers &amp; bottles</button>
+        <button class="tab" role="tab" aria-selected="false" data-group="kids">Little ones</button>
+      </div>
+      <div class="products" id="products"></div>
+    </div>
+  </section>
+
+  <!-- FEATURE -->
+  <section class="feature">
+    <div class="wrap feature__grid">
+      <div class="feature__visual reveal" id="featureVisual"></div>
+      <div class="feature__copy reveal">
+        <p class="eyebrow">BOTTLL</p>
+        <h2><em>always on call.</em></h2>
+        <p class="lede">A slim bottle that fits a tote, a cup holder or the side pocket of a gym bag. The screw cap seals tight, and the matte finish keeps its color through daily use.</p>
+        <ul class="ticks">
+          <li><span>01</span>Double-wall vacuum insulation keeps drinks cold or hot</li>
+          <li><span>02</span>Food-grade stainless steel interior</li>
+          <li><span>03</span>Leak-resistant screw cap</li>
+          <li><span>04</span>Soft-touch powder-coat finish</li>
+        </ul>
+        <div class="feature__swatches" id="featureSwatches"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GRIPPII -->
+  <section class="section grippii" id="grippii">
+    <div class="wrap grippii__grid">
+      <div class="reveal">
+        <p class="eyebrow">Accessories</p>
+        <h2>Mix &amp; match <em>your grippii.</em></h2>
+        <p class="lede">Silicone straw toppers for GRIPPII. They snap onto the straw, keep it clean, help you spot your cup, and add a second color to the set.</p>
+        <a href="#shop" class="btn btn--dark">Shop grippii</a>
+      </div>
+      <div class="grippii__cards reveal" id="grippiiCards"></div>
+    </div>
+    <div class="wrap extras" id="extras"></div>
+  </section>
+
+  <!-- COLOR WALL -->
+  <section class="wall" id="colors">
+    <div class="wrap">
+      <div class="section__head reveal">
+        <p class="eyebrow eyebrow--light">The color wall</p>
+        <h2>Find <em>your shade.</em></h2>
+      </div>
+      <div class="chips" role="tablist" id="chips">
+        <button class="chip is-active" data-mood="all">All</button>
+        <button class="chip" data-mood="brights">Brights</button>
+        <button class="chip" data-mood="pastels">Pastels</button>
+        <button class="chip" data-mood="neutrals">Neutrals</button>
+        <button class="chip" data-mood="deep">Deep tones</button>
+      </div>
+      <div class="swatchgrid" id="swatchGrid"></div>
+    </div>
+  </section>
+
+  <!-- MOMENTS -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section__head reveal">
+        <p class="eyebrow">Made for the day</p>
+        <h2>One for every <em>moment.</em></h2>
+      </div>
+      <div class="moments" id="moments"></div>
+    </div>
+  </section>
+
+  <!-- STORES -->
+  <section class="stores" id="stores">
+    <div class="wrap stores__grid">
+      <div class="reveal">
+        <p class="eyebrow">In store</p>
+        <h2>See the full wall <em>in person.</em></h2>
+        <p class="lede">Every shade, every silhouette, side by side. Visit the puff display at Arabian Center and build your set.</p>
+        <div class="hero__ctas">
+          <a href="#" class="btn btn--dark">Get directions</a>
+          <a href="https://instagram.com/trypuff" class="btn btn--ghost" target="_blank" rel="noopener">@trypuff</a>
+        </div>
+      </div>
+      <div class="stores__shelf reveal" id="shelf"></div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="news">
+    <div class="wrap news__inner reveal">
+      <h2>First look at <em>new shades.</em></h2>
+      <p>Drops, restocks and limited colors, sent to your inbox before anywhere else.</p>
+      <form class="news__form" id="newsForm">
+        <label class="sr" for="email">Email address</label>
+        <input id="email" type="email" placeholder="you@email.com" required>
+        <button class="btn btn--dark" type="submit">Subscribe</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__grid">
+    <div>
+      <a href="#top" class="logo logo--lg">puff</a>
+      <p class="footer__tag">Hydration, in every shade.</p>
+    </div>
+    <div><h4>Shop</h4><a href="#shop">Tumblers</a><a href="#shop">BOTTLL</a><a href="#shop">KOFFII</a><a href="#grippii">Accessories</a></div>
+    <div><h4>Help</h4><a href="#">Shipping</a><a href="#">Returns</a><a href="#">Care guide</a></div>
+    <div><h4>Follow</h4><a href="https://instagram.com/trypuff" target="_blank" rel="noopener">Instagram</a><a href="#stores">Stores</a></div>
+  </div>
+  <div class="wrap footer__base"><span>© <span id="yr"></span> puff</span><span>All rights reserved</span></div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<div class="viewer" id="viewer" hidden>
+  <div class="viewer__panel" role="dialog" aria-modal="true" aria-labelledby="viewerName">
+    <button class="viewer__close" id="viewerClose" aria-label="Close 3D viewer">&times;</button>
+    <div class="viewer__stage" id="viewerStage"><p class="viewer__status" id="viewerStatus">Loading 3D…</p></div>
+    <div class="viewer__bar">
+      <div><h3 id="viewerName"></h3><p class="viewer__hint">Drag to spin · scroll or pinch to zoom</p></div>
+      <div class="swatches" id="viewerSwatches"></div>
+    </div>
+  </div>
+</div>
+
+<script src="3d/colors.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
